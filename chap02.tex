@@ -1,6 +1,84 @@
-\section*{Chapter 2. Conditional expectation and Hilbert spaces}
+\section*{Chapter 2. Conditional expectation (C.E.) and Hilbert spaces}
 \subsection*{2.1. Condition expectation: existence and uniqueness}
+\begin{proposition*}
+There exists a unique (a.s.) optiimal $A \in \mathcal H_Y$ such that $\mathbf d^2 = \E[(X-Z)^2].$ Further, the optimality of $Z$ is equivalent to the orthogonality property $\E[(X-Z)V] = 0 \text{ for all } V \in \mathcal H_Y$.
+\end{proposition*}
+
+\begin{definition*}
+For $X \in L^2(\Omega, \mathcal F, \mathbf P)$, the \emph{conditional expectation} $Z = \E(X|Y)$ is the unique R.V. in $\mathcal H_Y$ satisfying the orthogonality property above.
+\end{definition*}
+
+\begin{definition*}
+The \emph{conditional expectation} of $X \in L^1(\Omega, \mathcal F, \mathbf P)$ given a $\sigma$-field $\mathcal G \subseteq \mathcal F$, is the R.V. $Z$ on $(\Omega, \mathcal G)$ such that $\E[(X-Z)I_A]=0$ for all $A \in \mathcal G$. $\E(X|Y)$ correspond to the special case of $\mathcal G = \mathcal F_Y$.
+\end{definition*}
+
+\begin{theorem*}
+The C.E. of integrable R.V. $X$ given any $\sigma$-field $\G$ exists and is a.s. unique. That is, there exists $Z$ measurable on $\G$ that satisfies the above definition, and if $Z_1$ and $Z_2$ are both measurable on $\G$ satisfying this then $Z_1 \overset{\text{a.s.}}{=} Z_2$. Further, if we also have $\E X^2 < \infty$, then $Z$ also satisfies $\E[(X-Z)V]=0$ for all $V \in L^2(\Omega, \G, \mathbf P$, hence for $\G = \mathcal F_Y$, $Z$ coincides with the first definition.
+\end{theorem*}
+
+\begin{proposition*}
+If $X$ is a non-negative R.V. then a.s. $\E(X|\G)\geq0$.
+\end{proposition*}
+
+% Hilbert spaces omitted
 \subsection*{2.2. Hilbert spaces}
+
 \subsection*{2.3. Properties of the conditional expectation}
+\begin{remark*}
+Note that $X$ may have the same law as $Y$ while $\E(X|\G)$ does not have the same law as $\E(Y|\G)$. For example, take $\G=\sigma(X)$ with $X$ and $Y$ square integrable, independent, of the same distribution and positive variance. Then, $\E(X|\G) = X$ and $\E(Y|\G)=\E Y$ have different laws.
+\end{remark*}
+
+% could remove this as it is obvious
+\begin{proposition*}
+Conditional expectation is linear, i.e. $X,Y\in L^1(\Omega, \mathcal F, \mathbf P)$ implies $\E(\alpha X + \beta Y | \G) = \alpha \E (X|\G) + \beta \E(Y|\G)$.
+\end{proposition*}
+
+\begin{proposition*}[Tower property]
+Suppose $\mathcal H \subseteq \G \subseteq \F$ and $X \in L^1(\Omega, \F, \mathbf P)$. Then, $\E(X|\mathcal H) = \E(\E(X|\G)|\mathcal H)$.
+\end{proposition*}
+
+% omitting remark
+
+\begin{proposition*}[Jensen's inequality]
+Let $f : \mathbb R \to \mathbb R$ be a convex function (that is, $f(\lambda x + (1-\lambda)y) \leq \lambda f(x) + (1-\lambda)f(y)$ for any $x,y$ and $0\leq\lambda\leq1$). Suppose $X \in L^1(\Omega, \F,\mathbf P)$ is such that $\E\abs{f(X)} < \infty$. Then, $\E(f(X)|\G) \geq f(\E(X|\G))$.
+\end{proposition*}
+
+\begin{corollary*}
+For each $q \geq 1$, the norm of the conditional expectation of $X \in L^q(\Omega, \F, \mathbf P)$ given a $\sigma$-field $\G$ never exceeds the($L^q$)-norm of $X$. ($f(x) = \abs{x}^q$).
+\end{corollary*}
+
+\begin{theorem*}[Monotone Convergence for C.E.]
+If $0 \leq X_m \nearrow X$ and $\E(X) < \infty$ then $\E(X_m|\G) \nearrow \E(X|\G)$ a.s.
+\end{theorem*}
+
+\begin{theorem*}[Dominated Convergence for C.E.]
+If $\abs{X_m}\leq Y \in L^1(\Sigma,\F,\mathbf P)$ and $X_m \overset{a.s.}{\rightarrow} X$, then $\E(X_m|\G) \overset{a.s.}{\rightarrow} \E(X|\G)$.
+\end{theorem*}
+
+\begin{remark*}
+In contrast to regular DCT, convergence in \emph{probability} to $X$ by $X_m$ that are dominated does not imply a.s. convergence of $\E(X_m|\G)$. Taking $\G=\F$ this contradicts ``$X_n \to_p X$ does not imply $X_n \overset{a.s.}{\to} X$.''
+\end{remark*}
+
+\begin{theorem*}
+Suppose $X_n \overset{q.m.}{\to} X$, that is $X_n,X\in L^q$ with $\E\abs{X_n-X}\to0$. Then, $\E(X_n|\G)\overset{q.m.}{\to}\E(X|\G)$.
+\end{theorem*}
+
+\begin{proposition*}
+Suppose $Y$ is bounded and measurable on $\G$, and that $X \in L^1(\Omega,\F,\mathbf P)$. Then, $\E(XY|\G) = Y\E(X|G)$.
+\end{proposition*}
+
+\begin{proposition*}
+If $X$ is integrable and $\sigma$-fields $\G$ and $\sigma(\sigma(X),\mathcal H)$ are independent, then $\E[X|\sigma(\G,\mathcal H)] = \E[X|\mathcal H]$.
+\end{proposition*}
+
 \subsection*{2.4. Regular conditional probability}
 
+%ignoring 2.4 - 2.4.3
+
+\begin{definition*}
+The \emph{conditional expectation} of an integrable random variable $X$ given a $\sigma$-field $\G$ is $\E[X|\G] = \int_{\mathbb R} x \hat{\mathbf P}_{X|\G} (dx,\omega)$.
+\end{definition*}
+
+\begin{example*}
+The R.C.P.D. is explicit when $\G = \sigma(Y)$ and the random vector $(X,Y)$ has a \emph{probability density function} $f_{X,Y}$. For all $x,y\in\mathbb R$, $\mathbf P(X \leq x, Y \leq y) = \int_{-\infty}^y \int_{-\infty}^x f_{X,Y}(u,v) \, du \, dv$. In this case the R.C.P.D. of $X$ given $\G=\sigma(Y)$ has density function $f_{X|Y}(x|Y(\omega))$ where $f_{X|Y}(x,y) = f_{X,Y}(x,y) / f_Y(y)$ and $f_Y(y) = \int_{\mathbb R} f_{X,Y}(v,y)\,dv$. Hence $\E(X|Y) = \int_{\mathbb R} x f_{X|Y}(x|Y)\,dx$.
+\end{example*}

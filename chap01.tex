@@ -1,0 +1,91 @@
+\section*{Chapter 1. Probability, measure, and integration}
+\subsection*{1.1. Probability spaces and $\sigma$-fields}
+\begin{definition*}[$\sigma$-field]
+We say that $\F \subset 2^\Omega$ is a $\sigma$-field (or a $\sigma$-algebra), if
+\begin{enumerate}[label=(\alph*)]
+\item $\Omega \in \F$,
+\item If $A \in \F$, then $A^c \in \F$ as well,
+\item If $A_i \in \F$ for $i = 1, 2, \dots$, then also $\cup_{i=1}^\infty A_i
+	\in \F$.
+\end{enumerate}
+\end{definition*} 
+
+\begin{definition*}[Probability Measure / Space]
+A pair $(\Omega, \F)$ with $\F$ a $\sigma$-field of subsets of $\Omega$ is
+called a \emph{measurable space}. Given a measurable space, a \emph{probability
+measure} $\Pb$ is a function $\Pb: \F \rightarrow [0, 1]$, having the following
+properties:
+\begin{enumerate}[label=(\alph*)]
+\item $0 \le \Pb(A) \le 1$ for all $A \in \F$,
+\item $\Pb(\Omega) = 1$,
+\item (Countable additivity) $\Pb(A) = \sum_{n=1}^\infty \Pb(A_n)$ whenever $A =
+\cup_{n=1}^\infty A_n$ is a countable union of disjoint sets $A_n \in \F$.
+\end{enumerate}
+A \emph{probability space} is a triplet $(\Omega, \F, \Pb)$ with $\Pb$ a
+probability measure on the measurable space $(\Omega, \F)$.
+\end{definition*} 
+
+\begin{definition*}[Generated $\sigma$-field]
+Given a collection of subsets $A_\alpha \subseteq \Omega$, where $\alpha \in
+\Gamma$ a not necessarily countable index set, we denote the smallest
+$\sigma$-field $\F$ such that $A_\alpha \in \F$ for all $\alpha \in \Gamma$ by
+$\sigma(\{A_\alpha\})$ (or sometimes by $\sigma(A_\alpha, \alpha \in \Gamma)$,
+and call $\sigma(\{A_\alpha\})$ the $\sigma$-field \emph{generated} by the collection
+$\{A_\alpha\}$. That is
+\[
+\sigma(\{A_\alpha\}) - \cap \{ \G : \G \subset 2^\Omega
+\text{ is a $\sigma$-field}, A_\alpha \in \G \forall \alpha \in
+\Gamma\}.
+\] 
+\end{definition*} 
+
+\begin{lemma*} 
+If two different collections of generators $\{A_\alpha\}$ and $\{B_\beta\}$ are
+such that $A_\alpha \in \sigma(\{B_\beta\})$ for each $\alpha$ and $B_\beta \in
+\sigma(\{A_\alpha\})$ for each $\beta$, then $\sigma(\{A_\alpha\}) =
+\sigma(\{B_\beta\})$.
+\end{lemma*} 
+
+\begin{proposition*} 
+There exists a subset of $\R$ that is not in $\B$. That is, not all sets are
+Borel sets.
+\end{proposition*} 
+
+
+\subsection*{1.2: Random variables and their expectation}
+\begin{definition*}[Random Variable]
+A \emph{Random Variable} (R.V.) is a function $X: \Omega \rightarrow \R$ such
+that $\forall \alpha \in \R$ the set $\{\omega: X(\omega) \le \alpha\}$ is in
+$\F$ (such a function is also called a \emph{$\F$-measurable or, simply,
+measurable function}).
+\end{definition*} 
+
+\begin{proposition*} 
+For every R.V. $X(\omega)$ there exists a sequence of simple functions
+$X_n(\omega)$ such that $X_n(\omega) \rightarrow X(\omega)$ as $n\rightarrow
+\infty$, for each fixed $\omega \in \Omega$.
+\end{proposition*} 
+
+\begin{definition*}[Almost Surely]
+We say that a R.V. $X$ and $Y$ are defined on the same probability space
+$(\Omega, \F, \Pb)$ are almost surely the same if $\Pb(\{\omega: X(\omega) \ne
+Y(\omega)\}) = 0$. This shall be denoted by $X \as Y$.
+\end{definition*} 
+
+\begin{definition*}
+Given a R.V. $X$ we denote $\sigma(X)$ the smallest $\sigma$-field $\G \subseteq
+\F$ such that $X(\omega)$ is measure on $(\Omega, \G)$.
+\end{definition*} 
+
+\begin{definition*} 
+A function $g: \R \rightarrow \R$ is called \emph{Borel (measurable) function}
+if $g$ is a R.V. on $(\R, \B)$. if $g$ is a R.V. on $(\R, \B)$.
+\end{definition*} 
+
+
+
+
+
+\subsection*{1.3: Converge of random variables}
+\subsection*{1.4: Independence, weak convergence and uniform integrability}
+

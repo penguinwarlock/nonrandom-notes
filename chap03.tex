@@ -56,6 +56,22 @@ for any $1\leq k\leq N$, $t_1<t_2<\dots<t_N$ and $\alpha_i\in\mathbb R$.
 The f.d.d.s of any S.P. must be consistent. Conversely, for any consistent collection f.d.d.s, there exists a probability space $(\Omega, \F,\mathbf P)$ and a stochastic process $\{X_t(\omega)\}$ on it, whose f.d.d.s are in agreement with the given collection. Further, the restriction of $\mathbf P$ to the $\sigma$-field $\F_X$ is uniquely determined by the given collection of f.d.d.
 \end{proposition*}
 
+%excluding the rest of 3.1 because don't have to know about cylindrical \sigma-field stuff
+
 \subsection*{3.2: Characteristic functions, Gaussian variables and processes}
+\begin{definition*}
+A \emph{random vector} $\uX = (X_1,\dots,X_n)$ with values in $\mathbb R^n$ has the \emph{characteristic function} 
+$\Phi_{\uX}(\utheta) = \E[\exp{(i \sum_{k=1}^n \theta_k X_k)}]$, 
+where $\utheta = (\theta_1,\dots,\theta_n) \in \mathbb R^n$.
+\end{definition*}
+
+\begin{remark*}
+The characteristic function exists for any $\uX$ because trig functions are bounded.
+\end{remark*}
+
+\begin{proposition*}
+The characteristic function determines the law of a random vector. That is, if $\Phi_\uX(\utheta) = \Phi_{\underline{Y}}(\utheta)$ for all $\utheta$ then $\uX$ has the same law (= probability measure on $\mathbb R^n$) as $\underline Y$.
+\end{proposition*}
+
 \subsection*{3.3: Sample path continuity}
 

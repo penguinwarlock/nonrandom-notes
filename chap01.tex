@@ -278,12 +278,12 @@ $f(X_n) \xrightarrow{a.s.} f(X)$ as well.
 
 \begin{definition*} 
 We say that $(\Omega, \F, \Pb)$ is a \emph{complete probability space} if any
-subset $N$ of $B \in \F$ with $\Pb(B)$ is also in $\F$.
+subset $N$ of $B \in \F$ with $\Pb(B) = 0$ is also in $\F$.
 \end{definition*} 
 
 \begin{definition*} 
 We say that $X_n$ converges to $X$ in probability, denoted $X_n \rightarrow_p
-X$, if $\Pb(\{\omega: |X_n(\omega) - X(\omega)| > \epsilon\})$ as $n\rightarrow
+X$, if $\Pb(\{\omega: |X_n(\omega) - X(\omega)| > \epsilon\}) \to 0$ as $n\rightarrow
 \infty$, for any fixed $\epsilon > 0$.
 \end{definition*} 
 
@@ -368,6 +368,14 @@ Give a \textbf{counterexample} to each of the following claims:
 \item If $X_n \rightarrow X$ in probability then $X_n \rightarrow X$ a.s.
 \end{itemize}
 \end{exercise*}
+
+\begin{example*}
+For $n \in \mathbb N$ find the largest $k$ s.t. $2^k \leq n$ and write $n = 2^k + m$. Then let $X_n = \1_{[m/2^k,(m+1)/2^k]} : [0,1]\to\mathbb R$. $X_n \to 0$ in probability and $L^q$ but not a.s.
+\end{example*}
+
+\begin{example*}
+On $[0,1]$ let $X_n = n\1_{[0,1/n]}$. Then $X_n \to 0$ a.s. but not in $L^q$.
+\end{example*}
 
 \begin{proposition*} 
 If $X_n \xrightarrow{q.m.} X$ and $X_n \xrightarrow{a.s.} Y$, then $X = Y$ a.s.

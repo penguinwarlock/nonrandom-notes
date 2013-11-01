@@ -73,5 +73,70 @@ The characteristic function exists for any $\uX$ because trig functions are boun
 The characteristic function determines the law of a random vector. That is, if $\Phi_\uX(\utheta) = \Phi_{\underline{Y}}(\utheta)$ for all $\utheta$ then $\uX$ has the same law (= probability measure on $\mathbb R^n$) as $\underline Y$.
 \end{proposition*}
 
+\begin{exercise*}
+If $X_n \overset{\mathcal L}{\to} X$ then $\Phi_{X_n}(\theta) \to \Phi_X(\theta)$ for any $\theta$.
+\end{exercise*}
+
+\begin{remark*}
+The converse of the previous exercise is also true.
+\end{remark*}
+
+\begin{definition*}
+We say that a random vector $\uX = (X_1,\dots,X_n)$ has a \emph{probability density function} $f_\uX$ if 
+\[
+	\mathbf P(a_i \leq X_i \leq b_i,i=1,\dots,n) = \int_{a_1}^{b_1} \cdots \int_{a_n}^{b_n} f_\uX(x_1,\dots,x_n)\,dx_n\,\cdots\,dx_1
+\]
+for every $a_i<b_i,i=1,\dots,n$. Such density $f_\uX$ must be a non-negative Borel measurable function with $\int_{\mathbb R^n} f_\uX(\underline x) \, d\underline x = 1$. $f_\uX$ can be called the \emph{joint density} of $X_i$.
+\end{definition*}
+
+\begin{proposition*}
+If $\uX = (X_1,\dots,X_n)$, with $X_i$ R.V.s, then $X_i$ are mutually independent if and only if $\Phi_\uX(\utheta) = \E \left[ \prod_{k=1}^n e^{i\theta_kX_k}\right] = \prod_{k=1}^n \Phi_{X_k}(\theta_k)$ for all $\utheta \in \mathbb R^n$.
+\end{proposition*}
+
+%skipping the note about positive semidefinite
+
+\begin{definition*}
+We say that a \emph{random vector} $\uX=(X_1,\dots,X_n)$ has a \emph{Gaussian} (or multivariate Normal) distribution if $\Phi_\uX(\utheta) = \exp{(-\frac12 \langle \utheta, \Sigma\utheta \rangle + i \langle \utheta, \underline \mu \rangle)}$ for some positive semidefinite $n\times n$ matrix $\Sigma$, some $\underline \mu \in \mathbb R^n$, and all $\utheta \in \mathbb R^n$.
+\end{definition*}
+
+\begin{remark*}
+When $n=1$ we say that a R.V. $X$ is Gaussian if $\E[e^{i\theta X}] = e^{-\frac12 \theta^2 \sigma^2 + i\theta\mu}$.
+\end{remark*}
+
+\begin{definition*}
+We say that $\uX$ has a \emph{non-degenerate} Gaussian distribution if $\Sigma$ is invertible.
+\end{definition*}
+
+\begin{proposition*}
+A random vector $\uX$ with a non-degenerate Gaussian distribution has the density
+$f_\uX(\underline x) = (2\pi)^{-n/2}(\det\Sigma)^{-1/2} \exp{(-\frac12 \langle\underline x - \underline \mu, \Sigma^{-1}(\underline x - \underline \mu)\rangle)}$. In particular, if $\sigma^2 > 0$, then a Gaussian R.V. $X$ has density $f_X(x) = (2\pi)^{-1/2} \sigma^{-1} \exp{(-\frac12 (x-\mu)^2/\sigma^2)}$.
+\end{proposition*}
+
+\begin{proposition*}
+The \emph{parameters of the Gaussian distribution} are $\mu_j = \E X_j$ and $\Sigma_{jk} = \E[(X_j-\mu_j)(X_k-\mu_k)]$.
+\end{proposition*}
+
+% skipped the exercises but they might be important?
+
+\begin{proposition*}
+If a Gaussian random vector $\uX = (X_1,\dots,X_n)$ has uncorrelated coordinates, then its coordinates are also mutually independent.
+\end{proposition*}
+
+\begin{proposition*}
+Suppose a sequence of $n$-dimensional Gaussian random vectors $\uX^{(k)}$ converges in 2-mean to an $n$-dimensional random vector $\uX$, that is, $\E[(X_i - X_i^{(k)})^2] \to 0$ as $k\to\infty$ for each $i$. Then, $\uX$ is a Gaussian random vector, whose parameters are the limits of the corresponding parameters of $\uX^{(k)}$.
+\end{proposition*}
+
+\begin{proposition*}
+A random vector $\uX$ has the Gaussian distribution if and only if $(\sum_{i=1}^n a_{ji}X_i, j=1,\dots,m)$ is a Gaussian random vector for any non-random coefficients $a_{ij} \in \mathbb R$.
+\end{proposition*}
+
+\begin{definition*}
+A stochastic process (S.P.) $\{X_t\}$ is \emph{Gaussian} if for all $n < \infty$ and all $t_1,\dots,t_n \in \mathcal I$ the random vector $(X_{t_1},\dots,X_{t_n})$ has a Gaussian distribution, that is, all f.d.d.s of the process are Gaussian
+\end{definition*}
+
+\begin{corollary*}
+All distributional properties of Gaussian processes are determined by the mean $\mu(t) = \E X_t$ of the process and its auto-covariance function $\rho(t,s) = \E[(X_t-\mu(t))(X_s-\mu(s))]$.
+\end{corollary*}
+
 \subsection*{3.3: Sample path continuity}
 

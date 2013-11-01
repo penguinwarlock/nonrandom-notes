@@ -138,5 +138,83 @@ A stochastic process (S.P.) $\{X_t\}$ is \emph{Gaussian} if for all $n < \infty$
 All distributional properties of Gaussian processes are determined by the mean $\mu(t) = \E X_t$ of the process and its auto-covariance function $\rho(t,s) = \E[(X_t-\mu(t))(X_s-\mu(s))]$.
 \end{corollary*}
 
-\subsection*{3.3: Sample path continuity}
+\begin{proposition*}
+If $\text{Cov}(Y_{t+h} - Y_t,Y_s) = 0$ for a Gaussian stochastic process $\{Y_t\}$, all $t\geq s$ and $h>0$, then the S.P. $\{Y_t\}$ has uncorrelated hence independent increments (which is thus also equivalent to $\E(Y_{t+h} - Y_t | \sigma(Y_s, s\leq t)) = \E(Y_{t+h}-Y_t)$ for any $t \geq 0$ and $h > 0$).
+\end{proposition*}
 
+\begin{proposition*}
+If the S.P. $\{X_t, t\in\mathcal I\}$ and the Gaussian S.P. $\{X_t^{(k)},t\in\mathcal I\}$ are such that $\E[(X_t - X_t^{(k)})^2]\to0$ as $k\to\infty$, for each fixed $t \in \mathcal I$, then $X_t$ is a Gaussian S.P. with mean and auto-covariance functions that are the pointwise limits of those for $X_t^{(k)}$.
+\end{proposition*}
+
+%some examples/exercises here
+
+\begin{definition*}
+A stochastic process $\{X_t\}$ indexed by $t\in\mathbb R$ is called \emph{(strong sense) stationary} if its f.d.d. satisfy
+$F_{t_1,\dots,t_N}(\alpha_1,\dots,\alpha_N) = F_{t_1+\tau,\dots,t_N+\tau}(\alpha_1,\dots,\alpha_N)$ for all $\tau\in\mathbb R$, $N<\infty$, $\alpha_i\in\mathbb R$, and $t_1<\dots<t_N$. A similar definition applies to discrete time S.P. indexed by $t$ on the integers, just then $t_i$ and $\tau$ take only integer values.
+\end{definition*}
+
+\begin{proposition*}
+A Gaussian S.P. is stationary if and only if $\mu(t) = \mu$ (a constant) and $\rho(t,s) = r(\abs{t-s})$, where $r:\mathbb R \to \mathbb R$ is a function of the time difference. (A stochastic process whose mean and auto-covariance function satisfy these two properties is called \emph{weak sense (or covariance) stationary}. In general, a weak sense stationary process is not a strong sense stationary process. However, for Gaussians, they are the same.
+\end{proposition*}
+
+% interesting exercise to include?
+
+\begin{definition*}
+A process $\{X_t, t\geq0\}$ has \emph{stationary increments} if $X_{t+h}-X_t$ and $X_{s+h}-X_s$ have the same law for all $s,t,h\geq0$. The same definition applies to discrete time S.P. except for integer values.
+\end{definition*}
+
+\begin{example*}
+A sequence of i.i.d. r.v.s $\{X_n,n\in\mathbb Z\}$ is a discrete time stationary process. However, many processes are not stationary. For example, the random walk $S_n = \sum_{i=1}^n X_i$ is a non-stationary S.P. when $\E X_1 = 0$ and $\E X_1^2 = 1$. Otherwise the law of $S_n$ and in particular its second moment would not depend on $n$, but clearly $\E S_n = n$. Also, every stationary process has stationary increments, but the random walk $S_n$ has stationary increments but is not stationary.
+\end{example*}
+
+\subsection*{3.3: Sample path continuity}
+\begin{definition*}
+$\{X_t\}$ has \emph{continuous sample path} with probability 1 if $\mathbf P(\{\omega : t\mapsto X_t(\omega) \text{ is continuous}\})=1$. Similarly, we use the term \emph{continuous modification} to denote a modification $\{\tilde X_t\}$ of $\{X_t\}$ that has continous sample path with probability 1.
+\end{definition*}
+
+%maybe inline this?
+\begin{definition*}
+A S.P. $Y_t$ is \emph{locally H\"older continuous} with exponent $\gamma$ if for some $c < \infty$ and a R.V. $h(\omega)>0$, 
+\[
+	\mathbf P\left( \left\{ \omega : \sup_{0\leq s,t\leq T, \abs{t-s} \leq h(\omega)} \abs{Y_t(\omega) - Y_s(\omega)} \leq c \abs{t-s}^\gamma \right\}\right) = 1.
+\]
+Note the ``locally'' refers to $h(\omega)$; if it holds for unrestricted $t,s$ we say $Y_t$ is \emph{globally/uniformly H\"older continuous} with exponent $\gamma$.
+\end{definition*}
+
+\begin{theorem*}[Kolmogorov's continuity theorem]
+Given a S.P. $\{X_t, t\in[0,T]\}$, suppose there exist $\alpha,\beta,c,h_0>0$ so that 
+$\E(\abs{X_{t+h} - X_t}^\alpha) \leq ch^{1+\beta}$ for all $0 \leq t,t+h \leq T$, $0 < h < h_0$. Then, there exists a continuous modification $Y_t$ of $X_t$ so that $Y_t$ is also locally H\"older continuous with exponent $\gamma$ for any $0 < \gamma < \beta/\alpha$.
+\end{theorem*}
+
+\begin{example*}
+Consider the S.P. $X_t(\omega) = I_{\{U\leq t\}}(\omega)$ for $t\in[0,1]$ where $U$ is Uniform on $[0,1]$ (jumps up at a random point). Note that $\abs{X_{t+h}-X_t} = 1$ if $0\leq t<U\leq t+h$ and equals zero otherwise. So, $\E(\abs{X_{t+h}-X_t}^\alpha) = U((t,t+h]) \leq h$ for any $h>0$ and $t\geq0$. However, $X_t(\omega)$ is discontinuous as $t=U(\omega)$ when $\omega\not=0$. So $\{X_t\}$ a.s. has discontinuous sample paths (and it can be shown it has no continuous modification).
+\end{example*}
+
+%exercise that we had as homework; left out some
+\begin{exercise*}
+Suppose the S.P. $X_t$ has zero mean and variance one always. Then $\abs{\E(X_t X_{t+h})} \leq 1$ for any $h > 0$. Also, if we have for $p>1$ $\E(X_t X_{t+h}) \geq 1 - \lambda h^p$ for all $0 < h \leq h_0$, then by Kolmogorov, $X_t$ has a continuous modification. Now suppose $X_t$ a Gaussian S.P. with $\E X_t=0$ and $E X^2_t = 0$. Then if $X_t$ satisfies $\E(X_tX_{t+h})\geq1-\lambda h^p$ for all $0<h\leq h_0$, for some finite $\lambda$, $p > 0$ (not $p > 1$), then it has a modification which is locally H\"older continuous for all $\gamma < p/2$.
+\end{exercise*}
+
+\begin{example*}[Random telegraph noise]
+Let $\tau_i, i=\in\mathbb N$ be independent random times each having the Exponential(1) distribution, i.e. $\mathbf P(\tau_i \leq x) = 1 - e^{-x}$ for all $i$, $x\geq0$. Starting at $R_0\in\{-1,1\}$ such that $\mathbf P(R_0=1)=1/2$, the S.P. $R_t$ alternately jumps between $\pm 1$ at the random times $s_k = \sum_{i=1}^k \tau_i$, so $R_t$ is constant on each $(s_k,s_{k+1})$. Since almost surely $s_1<\infty$ this S.P. does not have a continuous modification. However $\E(R_tR_{t+\varepsilon}) = \mathbf P(R_t = R_{t+\varepsilon}) - \mathbf P(R_t \not= R_{t+\varepsilon}) = 1 - 2\mathbf P(R_t \not= R_{t+\varepsilon})$, and for any $t\geq 0$ and $\varepsilon >0$, $\varepsilon^{-1} \mathbf P(R_t \not= R_{t+\varepsilon}) \leq \varepsilon^{-1} \mathbf P(\tau_i \leq \varepsilon) = \varepsilon^{-1}(1-e^{-\varepsilon}) \leq 1$, so it satisfies $\E(R_t R_{t+\varepsilon}) \geq 1 - \lambda h^p$ for $p=1$ and $\lambda =2$ and therefore has a continuous modification.
+\end{example*}
+
+\begin{definition*}
+An S.P. $X_t$ has \emph{right-continuous with left limits} (RCLL) sample paht if for a.e. $\omega$, the path $X_t(\omega)$ is RCLL at any $t$, i.e. for $h \downarrow 0$ both $X_{t+h}(\omega) \to X_t(\omega)$ and the limit of $X_{t-h}(\omega)$ exists). Similarly, a modification having RCLL sample path with probability one is called an \emph{RCLL modification} of the S.P.
+\end{definition*}
+
+\begin{definition*}
+Two S.P.s $X_t$ and $Y_t$ have \emph{indistinguishable} sample path if $\mathbf P(X_t = Y_t \text{ for all } t) = 1$.
+\end{definition*}
+
+\begin{exercise*}
+If $X_n, Y_n$ are discrete time S.P.s that are modifications of each other then they have indistinguishable sample path. If $X_t,Y_t$ are continuous time S.P.s that are modifications of each other, and both have RCLL sample paths a.s., then they are indistinguishable. However, if you consider $Y_t(\omega) \equiv 0$ and $X_t(\omega) = I_\{\omega\}(t)$ (where $\omega \in [0,1]$ uniformly) then $X_t,Y_t$ are \emph{not} indistinguishable.
+\end{exercise*}
+
+\begin{proposition*}
+For sample paths of any S.P.: H\"older continuity $\implies$ Continuous with probability one $\implies$ RCLL.
+\end{proposition*}
+
+\begin{theorem*}[Fubini's theorem]
+If $X_t$ has RCLL sample path and for some interval $I$ and $\sigma$-field $\mathcal H$, almost surely $\int_I \E[\abs{X_t}|\mathcal H] \, dt$ is finite then almost surely $\int_I X_t\,dt$ is finite and $\int_I \E[X_t | \mathcal H]\,dt = \E \left[ \int_I X_t \, dt | \mathcal H \right]$.
+\end{theorem*}

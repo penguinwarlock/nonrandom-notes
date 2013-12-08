@@ -1,0 +1,43 @@
+\section*{Chapter 4. Martingales and Stopping Times}
+\subsection*{4.1: Discrete time martingales and filtrations}
+\begin{definition*} 
+A filtration is a non-decreasing family of sub-$\sigma$-fields $\{\F_n\}$ of our
+measurable space $(\Omega, \F)$. That is, $\F_0 \subseteq \F_1 \subseteq \F_2
+\subseteq \cdots \subseteq \F_n \cdots \subseteq \F$ and $\F_n$ is a
+$\sigma$-field for each $n$.
+\end{definition*} 
+
+\begin{definition*} 
+A S.P. $\{X_n, n = 0, 1, \dots\}$ is adapted to a filtration $\{\F_n\}$ if
+$\omega \mapsto X_n)(\omega)$ is a R.V. on $(\Omega, \F_n)$ for each $n$, that
+is, if $\sigma(X_n) \subseteq \F_n$ for each $n$.
+\end{definition*} 
+
+\begin{definition*} 
+A filtration $\{\G_n\}$ with $\G_n = \sigma(X_0, X_1, \dots, X_n)$ is the
+minimal filtration with respect to which $\{X_n\}$ is adapted. We therefore call
+it the canonical filtration for the S.P. $\{X_n\}$.
+\end{definition*} 
+
+\begin{definition*} 
+A martingale (denoted MG) is a pair $(X_n, \F_n)$ where $\{\F_n\}$ is a
+filtration and $X_n$ is an integrable (i.e. $\E|X_n| < \infty$) S.P. adapted to
+this filtration such that $\E[X_{n+1} | \F_n] = X_n$ for rall $n$ a.s.
+\end{definition*}
+
+\begin{proposition*} 
+If $X_n = \sum_{i=1}^n D_i$ then the canonical filtration for $\{X_n\}$ is the
+same as the canonical filtration for $\{D_n\}$. Further, $(X_n, \F_n)$ is a
+martingale if and only if $\{D_n\}$ is an integrable S.P., adapted to
+$\{\F_n\}$, such that $\E(D_{n+1} | \F_n) = 0$ a.s. for all $n$.
+\end{proposition*} 
+
+\subsection*{4.2: Continuous time martingales and right continuous filtrations}
+
+\subsection*{4.3: Stopping times and the optional stopping theorem}
+
+\subsection*{4.4: Martingale representations and inequalities}
+
+\subsection*{4.5: Martingale convergence theorems}
+
+\subsection*{4.6: Branching processes: extinction probabilities}

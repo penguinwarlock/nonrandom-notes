@@ -32,12 +32,311 @@ martingale if and only if $\{D_n\}$ is an integrable S.P., adapted to
 $\{\F_n\}$, such that $\E(D_{n+1} | \F_n) = 0$ a.s. for all $n$.
 \end{proposition*} 
 
+\begin{definition*} 
+We call a sequence $\{V_n\}$ previsible predictable for the filtration
+$\{\F_n\}$ if $V_n$ is measureable on $\F_{n-1}$ for all $n \ge 1$.
+\end{definition*} 
+
+\begin{theorem*} 
+Let $(X_n, \F_n)$ be a MG and $\{V_n\}$ be a previsible sequence for the same
+filtration. The sequence of RV $Y_n = \sum_{k=1}^n V_k(X_k - X_{k-1})$, called
+the martingale transform of $V$ with respect to $X$, is then a MG with respect
+to the filtration $\{\F_n\}$, provided $|V_n| \le C_n$ for some non-random
+constants $C_n < \infty$, or more generally $\E|V_n|^q < \infty$ and $\E|X_n|^p
+< \infty$ for all $n$ and some $1 \le p, q < \infty$ such that $\frac1q +
+\frac1p = 1$.
+\end{theorem*} 
+
+\begin{remark*} 
+The integrability conditions imposed in the above Theorem ensure that
+$\E|V_k||X_k| < \infty$, hence that the MG transform $\{Y_n\}$ is an integrable
+SP. Once this is established, $\{Y_n\}$ would be a MG, so we can state different
+versions of the theorem by further varying our integrability conditions.
+\end{remark*} 
+
+%Section 4.1.2 ommited since not covered
+
+\begin{definition*} 
+A sub-martingale (denoted subMG) is an integrable SP $\{X_n\}$, adapted to the
+filtration $\{\F_n\}$, such that $\E[X_{n+1} | \F_n] \ge X_n$ for all $n$ almost
+surely. A super-martingale (denoted supMG) is an integrable SP $\{X_n\}$,
+adapted to the filtration $\{\F_n\}$ such that $\E[X_{n+1} | \F_n] \le X_n$ for
+all $n$ almost surely.
+\end{definition*} 
+
+\begin{remark*} 
+Note that $\{X_n\}$ is a subMG iff $\{-X_n\}$ is a supMG, so they share many of
+the same properties.
+\end{remark*} 
+
+\begin{remark*} 
+If $\{X_n\}$ a subMG, then necessarily $n \mapsto \E X_n$ is non-decreasing,
+since by the tower property $\E[X_n] = \E[\E[X_n | \F_{n-1}]] \ge \E[X_{n-1}]$
+for all $n \ge 1$.
+\end{remark*} 
+
+
+
 \subsection*{4.2: Continuous time martingales and right continuous filtrations}
+\begin{definition*} 
+The pair $(X_t, \F_t)$, $t \ge 0$ real-valued, is called a continuous time
+martingale if
+\begin{itemize}
+\item The $\sigma$-fields $\F_t \subseteq \F$, $t \ge 0$, form a continuous time
+filtration, that is $\F_t \subseteq \F_{t+h}$ for all $t \ge 0$ and $h > 0$.
+
+\item The continuous time SP $\{X_t\}$ is integrable and adapted to this
+filtration. That is, $\E|X_t| < \infty$ and $\sigma(X_t) \subseteq \F_t$ for all
+$t \ge 0$.
+
+\item For any fixed $t \ge 0$ and $h > 0$, the identity $\E(X_{t+h} | \F_t) =
+X_t$ holds a.s.
+\end{itemize}
+Replacing equality in $c$ with $\ge$ and $\le$ defines the continuous time subMG
+and supMG respectively. Similar to a previous remark, if $\{X_t\}$ is a subMG,
+then $\E[X_t] \ge \E[X_s]$ for all $t \ge s$ (and the reverse for supMG).
+\end{definition*} 
+
+\begin{remark*} 
+Let $\sigma(X_s, 0 \le s \le t)$ denote the smallest $\sigma$-field containing
+$\sigma(X_s)$ for each $s \le t$. The canonical filtration for a continuous time
+SP $\{X_t\}$ is $\sigma(X_s, 0 \le s\ le t)$. Further, if $(X_t, \F_t)$ is a MG,
+then $(X_t, \sigma(X_s, 0 \le s \le t))$ is also a MG.
+\end{remark*} 
+
+\begin{proposition*} 
+Any integrable SP $\{M_t\}$ of independent increments and constant mean (i.e.
+$\E[M_t] = \E[M_0]$), is a MG.
+\end{proposition*} 
+
+\begin{definition*} 
+A filtration is called right-continuous if for any $t \ge 0$, $\cap_{h > 0}
+\F_{t + h} = \F_t$. (We assume ``usual conditions'' with $N \in \F_)$ whenever
+$\Pb(N) = 0$.)
+\end{definition*} 
+
+\begin{example*} 
+Consider the uniform probability measure on $\Omega = \{-1, 1\}$ and $\F =
+2^\Omega$. The process $X_t(\omega) = \omega t$ clearly has continuous sample
+path. It is easy to see that its canonical filtration has $\G_0 = \{\emptyset,
+\Omega\}$ while $\G_h = \F$ for all $h > 0$ and is evidently not
+right-continuous at $t = 0$.
+\end{example*} 
+
+\begin{theorem*} 
+If $(X_t, \F_t)$ is a MG with a right-continuous filtration $\{\F_n\}$, then
+$\{X_t\}$ has a RCLL modification.
+\end{theorem*} 
+
+
 
 \subsection*{4.3: Stopping times and the optional stopping theorem}
+\begin{definition*} 
+A random variable $\tau$ taking values in $\{0, 1, \dots, n, \dots, \infty\}$ is
+a stopping time for the filtration $\{\F_n\}$ if the event $\{\tau \le n\}$ is
+in $\F_n$ for each finite $n \ge 0$.
+\end{definition*} 
+
+\begin{definition*} 
+Using the notation $n \land \tau = \min(n, \tau(\omega))$, the stopped at $\tau$
+stochastic process $\{X_{n \land \tau}\}$ is given by
+$X_{n\land \tau} = X_n (\omega)$ if $n \le \tau(\omega)$ and
+$X_{n\land \tau} = X_{\tau(\omega)}(\omega)$ if $n > \tau(\omega)$.
+\end{definition*} 
+
+\begin{theorem*} 
+If $(X_n, \F_n)$ is a subMG (or supMG or a MG), and $\tau$ is a stopping time
+for $\{\F_n\}$, then $(X_{n \land \tau}, \F_n)$ is also a subMG, or subMG or MG,
+respectively.
+\end{theorem*} 
+
+\begin{corollary*} 
+If $(X_n, \F_n)$ is a subMG and $\tau$ is a stopping time for $\{\F_n\}$, then
+$\E(X_{n \land \tau} \ge \E(X_0)$ for all $n$. If in addition $(X_n, \F_n)$ is a
+MG, then $\E[X_\tau] = \E[X_0]$.
+\end{corollary*} 
+
+\begin{theorem*}[Doob's optional stopping] If $(X_n, \F_n)$ is a subMG and $\tau
+< \infty$ a.s. is a stopping time for the filtration $\{\F_n\}$ such that the
+sequence $\{X_{n \land \tau}$ is uniformly integrable, then $\E(X_\tau) \ge
+\E(X_0)$. If in addition $(X_n, \F_n)$ is a MG, ten $\E[X_\tau] = \E[X_0]$.
+\end{theorem*} 
+
+\begin{definition*} 
+A non-negative random variable $\tau(\omega)$ is called stopping time with
+respect to the continuous time filtration $\{\F_t\}$ if $\{\omega: \tau(\omega)
+\le t\} \in \F_t$ for all $t \ge 0$.
+\end{definition*} 
+
+\begin{proposition*} 
+If right-continuous SP $\{X_t\}$ is adapted to the filtration $\{\F_t\}$ then
+$\tau_B(\omega) = \inf\{t \ge 0: X_t(\omega) \in B\}$ is a stopping time for
+$\F_t$ when either (a) $B$ is an open set and $\F_t$ is a right continuous
+filtration, or (b) $B$ is a closed set and the sample path $t \mapsto
+X_t(\omega)$ is continuous for all $\omega \in \Omega$.
+\end{proposition*} 
+
+\begin{example*} 
+Consider the open set $B = (0, \infty)$ and the SP $X_t(\omega) = \omega t$ of
+continuous sample path and canonical filtration that is not right continuous. If
+is easy to check that $\tau_B(1) = 0$ and $\tau_B(-1) = \infty$. As the
+$\{\omega: \tau_B(\omega) \le 0\} = \{1\}$ is not in $\G_0 = \{\emptyset,
+\Omega\}$, we see that in this case, $\tau_B$ is not a stopping time for $\G_t$.
+\end{example*} 
+
+\begin{theorem*} 
+If $\tau$ is a stopping time for the filtration $\{F_t\}$ and the SP $\{X_t\}$
+of right-continuous sample path is a subMG (or supMG or MG) for $\{\F_t\}$, then
+$X_{t \land \tau} = X_{t \land \tau} (\omega)$ is also a subMG (or supMG or MG,
+respectively), for this filtration.
+\end{theorem*} 
+
+\begin{theorem*}[Doob's optional stopping]
+If $(X_t, \F_t)$ is a subMG with right-continuous sample path and $\tau <
+\infty$ a.s. is a stopping time for the filtration $\{\F_t\}$ such that
+$\{X_{t \land \tau}\}$ is uniformly integrable, then $\E(X_\tau) \ge \E(X_0)$.
+If in addition $(X_t, \F_t)$ is a MG, then $\E(X_\tau) = \E(X_0)$.
+\end{theorem*} 
+
+\begin{definition*} 
+The stopped $\sigma$-field $\F_\tau$ associated with the stopping time $\tau$
+for a filtration $\{\F_t\}$ is the collection of events $A \in \F$ such that
+$A \land \{\omega: \tau(\omega) \le t\} \in \F_t$ for each $t \ge 0$.
+\end{definition*} 
+
+
 
 \subsection*{4.4: Martingale representations and inequalities}
+\begin{theorem*} [Doob's decomposition]
+Given an integrable SP $\{X_n\}$, adapted to the discrete parameter filtration
+$\{\F_n\}$, $n \ge 0$, there exists a decomposition $X_n = Y_n + A_n$ such that
+$(Y_n, \F_n)$ is a MG and $\{A_n\}$ is a previsible SP. This decomposition is
+unique up to the value of $Y_0$, a RV measurable on $\F_0$.
+\end{theorem*} 
+
+\begin{theorem*} [Doob-Meyer decomposition]
+Suppose $\{\F_t\}$ is a right-continuous filtration and the martingale $(M_t,
+\F_t)$ of continuous sample path is such that $\E M_t^2 < \infty$ for each $t
+\ge 0$. Then, there exists a unique (integrable) SP such that
+\begin{itemize}
+\item $A_0 = 0$,
+\item $\{A_t\}$ has continuous sample path,
+\item $\{A_t\}$ is adapted to $\{\F_t\}$,
+\item $t \mapsto A_t$ is non-decreasing,
+\item $(M_t^2 - A_t, \F_t)$ is a MG.
+\end{itemize}
+\end{theorem*} 
+
+\begin{definition*} 
+A SP $\{A_t\}$ in the Doob-Meyer decomposition (of $\{M_t^2\}$) is called the
+increasing part or the increasing process associated with the MG $(M_t, \F_t)$.
+\end{definition*} 
+
+\begin{remark*} 
+If a square-integrable martingale of continuous sample path has a zero
+increasing path, then it is almost surely constant.
+\end{remark*} 
+
+\begin{theorem*} [Doob's inequality]
+\begin{itemize}
+\item Suppose $\{X_n\}$ is a subMG. Then, for all $x > 0$ and $N < \infty$,
+$\Pb(\max_{0 \le n \le N} X_n > x) \le x^{-1} \E|X_N|$.
+
+\item Suppose $\{X_n, n \le \infty\}$ is a subMG. Then, for all $x > 0$,
+$\Pb(\sup_{0 \le n < \infty} X_n > x) \le x^{-1} \E|X_\infty|$.
+
+\item Suppose $\{X_t\}, t \in [0, T]$ is a continuous-parameter, right
+continuous subMG (that is, each sample path $t \mapsto X_t(\omega)$ is right
+continuous). Then, for all $x > 0$, $\Pb(\sup_{0 \le t \le T} X_t > x)
+\le x^{-1} \E|X_T|$.
+\end{itemize}
+\end{theorem*} 
+
+\begin{example*} 
+Suppose $\{X_t\}$ is a right continuous subMG for $t \in [0, T]$ such that
+$\E[(X_t)^p_+] < \infty$ for some $p > 1$ and all $t \ge 0$. Then, for $q =
+p/(p-1)$, any $x > 0$ and $t \le T$, $\Pb(\sup_{0 \le u \le t} X_u > x) \le
+x^{-p} \E[(X_t)^p_+]$ and $\E[ (\sup_{0 \le u \le t} X_u)^p_+] \le q^p
+\E[(X_t)^p_+]$, where $(y)^p_+$ denotes the function $(\max(y, 0))^p$.
+\end{example*} 
+
+
 
 \subsection*{4.5: Martingale convergence theorems}
+\begin{theorem*} [Doob's convergence theorem]
+Suppose $(X_t, \F_t)$ is a right continuous subMG.
+\begin{itemize}
+\item If $\sup_{t \ge 0} \E[(X_t)_+] < \infty$, then $X_\infty =\lim_{t
+\rightarrow \infty} X_t$ exists w.p. 1. Further, in this case $\E|X_\infty| \le
+\lim_{t\rightarrow \infty} \E|X_t| < \infty$.
+
+\item If $\{X_t\}$ is uniformly integrable then $X_t \rightarrow X_\infty$ also
+in $L^1$. Further, the $L^1$ convergence $X_t \rightarrow X_\infty$ implies that
+$X_t \le \E(X_\infty | \F_t)$ for any fixed $t \ge 0$.
+\end{itemize}
+\end{theorem*} 
+
+\begin{corollary*} 
+If $(X_t, \F_t)$ is a right continuous MG and $\sup_t \E|X_t| < \infty$ then
+$X_\infty = \lim_{t\rightarrow \infty} X_t$ exists w.p.1 and is integrable. If
+$\{X_t\}$ is also U.I. then $X_t = \E(X_\infty | \F_t)$ for all $t$ (such a
+martingale, namely $X_t = \E(X | \F_t)$ for an integrable RV $X$ and a
+filtration $\{\F_t\}$, is called Doob's martingale of $X$ with respect to
+$\{\F_t\}$).
+\end{corollary*} 
+
+\begin{proposition*} 
+If the right continuous MG $\{Y_t\}$ is such that $\E Y_t^2 \le C$ for some $C <
+\infty$ and all $t \ge 0$, then there exists a RV $Y_\infty$ such that $Y_t
+\rightarrow Y_\infty$ a.s. and in $L^2$. Moreover, $\E Y_\infty^2 \le C <
+\infty$ and the corresponding result holds in the context of discrete parameter
+MGs.
+\end{proposition*} 
+
+\begin{remark*} 
+The above proposition does not have an $L^1$ analog. Namely, there exists a
+non-negative MG $\{Y_n\}$ such that $\E Y_n = 1$ for all $n$ and $Y_n
+\rightarrow Y_\infty = 0$ a.s., so obviously $Y_n$ does not converge to
+$Y_\infty$ in $L^1$.
+\end{remark*} 
+
 
 \subsection*{4.6: Branching processes: extinction probabilities}
+\begin{definition*}
+The Branching process is a discrete time SP $\{Z_n\}$ taking non-negative
+integer values, such that $Z_0 = 1$ and for any $n \ge 1$,
+$Z_n = \sum_{j=1}^{Z_{n-1}} N_j^{(n)}$, where $N$ and $N_j^{(n)}$ for $j = 1, 2,
+\dots$ are iid, non-negative integer valued RV with finite mean $m = \E(N) <
+\infty$, and where we use the convention that if $Z_{n-1} = 0$ then also $Z_n =
+0$.
+\end{definition*} 
+
+\begin{remark*} 
+We use the filtration $\F_n = \sigma(\{N_j^{(k)}, k \le n, j = 1, 2, \dots\})$.
+(Quickly note that $\G_n = \sigma(\{Z_k, k \le n\})$ is a strict subset of
+$\F_n$.)
+\end{remark*} 
+
+\begin{proposition*} 
+The SP $X_n = m^{-n} Z_n$ is a martingale for the filtration $\F_n$.
+\end{proposition*} 
+
+\begin{definition*} 
+$p_{ex} = \Pb (\{\omega: Z_n(\omega) = 0 \text{ for all $n$ large enough}\})$.
+$p_{ex}$ is called the extinction probability.
+\end{definition*} 
+
+\begin{proposition*}
+\begin{itemize}
+\item (Sub-critical) If $m < 1$, then $p_{ex} = 1$.
+\item (Critical) If $m = 1$ and $\Pb(N = 1) < 1$ then $p_{ex} = 1$.
+\end{itemize}
+\end{proposition*} 
+\begin{proposition*}
+(Super-critical)
+If $m > 1$ and $\Pb(N = 0) = 0$, extinction is impossible. For other
+cases, to compute $p_{ex}$, consider the function $\varphi(p) = \Pb(N = 0) +
+\sum_{k=1}^\infty \Pb(N=k) p^k$.  There exists a unique solution $\rho \in (0,
+1)$ to the equation $p = \varphi(p)$. Upon verifying that $\rho^{Z_n}$ is a
+martingale, we can show that $p_{ex} = \rho$. (Shown in exercise.)
+\end{proposition*} 

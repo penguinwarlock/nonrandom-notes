@@ -165,6 +165,10 @@ respect to its canonical filtration $\G_\tau$.
 The Brownian motion is a strong Markov process.
 \end{corollary*} 
 
+\begin{example*}
+With $X_0$ independent of the Brownian motion $W_t$, consider the S.P. $X_t = X_0 + W_t I_{\{X_0 \not = 0\}}$ of continuous sample path. Noting that $I_{X_0}=0=I_{X_t=0}$ almost surely (as the difference occurs on the event $\{\omega : W_t(\omega) = -X_0(\omega)\not=0\}$ which is of zero probability), by the independence of increments of $W_t$, hence of $X_t$ in case $X_0 \not 0$, we have that almost surely $\Pb(X_{t+u} \in A|\sigma(X_s,s\leq t)) = I_{0\in A}I_{X_0=0} + \Pb(W_{t+u} - W_t + X_t \in A|X_t)I_{X_0\not=0} = I_{0\in A} I_{X_t=0} + p_t(A|X_t)I_{X_t\not=0}$ for $p_t(A|x)$ the stationary regular transition probabilities of B.M., i.e. $p_t(A|x) = \int_A \frac{e^{-(y-x)^2/2t}}{\sqrt{2\pi t}} \, dy$. $X_t$ is a homogeneous Markov process and satisfies the regular Markov property, but it is not strong Markov; consider the a.s. finite s.t. $\tau=\inf\{t\geq0 : X_t=0\}$ and $\Gamma=\{x(\cdot) : x(1) > 0\}$ (left side is $\frac12 \mathbf 1_{x\not=0}$ while right side is zero).
+\end{example*}
+
 \begin{proposition*} 
 The Markov property (same equation as the definition above) holds for any
 stopping time $\tau$ (with respect to the canonical filtration of the

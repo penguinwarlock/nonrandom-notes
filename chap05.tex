@@ -1,1 +1,105 @@
 \section*{Chapter 5. The Brownian motion}
+\subsection*{5.1. Brownian motion: definition and construction}
+
+\begin{definition*}
+A stochastic process ($W_t, 0 \leq t \leq T$) is called a \emph{Brownian motion} (or Wiener Process if) (a) $W_t$ is a Gaussian process, (b) $\E W_t = 0$, $\E(W_tW_s)= \min{(t,s)}$, and (c) For almost every $\omega$, the sample path $t \mapsto W_t(\omega)$ is continuous on $[0,T]$.
+\end{definition*}
+
+% remove this?
+\begin{remark*}
+Brownian motion is martingale and is not stationary but has stationary increments
+\end{remark*}
+
+\begin{proposition*}
+The Brownian motion has independent increments of zero mean. (proof: look at $\E[(W_{t+h}-W_t)W_s]$).
+\end{proposition*}
+
+%skip a characterization of B.M. in terms of integrals
+
+\begin{remark*}
+A Gaussian R.V. $Y$ with $\E Y=0$ and $\E Y^2 = \sigma^2$ has moments $\E(Y^{2n})=\frac{(2n)!}{2^n n!}\sigma^{2n}$.
+\end{remark*}
+
+% there's one more here too...
+\begin{exercise*}
+Suppose $W_t$ is a B.M. and $\alpha,s,T>0$ are non-random constants. Then, the following are also Brownian motions: $\{-W_t, t\geq0\}$, $\{W_{s+t} - W_s,t\geq0\}$, $\{W_T - W_{T-t},0\leq t\leq T\}$, $\{\sqrt\alpha W_{t/\alpha}, t\geq0\}$, if $\tilde W_0=0$ and $\tilde W_t=tW_{1/t}$ then $\{\tilde W_t\}$ is B.M.
+\end{exercise*}
+
+\begin{exercise*}
+Almost surely, $t^{-1}W_t\to0$ for $t\to\infty$.
+\end{exercise*}
+
+\begin{exercise*}
+Define the following: the \emph{Brownian bridge} $B_t=W_t - \min(t,1)W_{e^t}$, the \emph{Geometric Brownian motion} $Y_t = e^{W_t}$, the \emph{Ornstein-Uhlenbeck process} $U_t = e^{-t/2} W_{e^t}$, and $X_t = x + \mu t + \sigma W_t$ a \emph{Brownian motion with drift} $\mu$ and diffusion coefficient $\sigma > 0$ starting from $x$. Of these,
+\begin{enumerate}
+\item $W_t, B_t, U_t,$ and $X_t$ are Gaussian, but $Y_t$ is not ($Y_1 > 0$).
+\item $U_t$ is Gaussian with constant mean and autocovariance $\rho(t,s) = \rho(\abs{t-s})$ so it is stationary. The others do not have constant mean or homogeneous-ish autocovariance so are not stationary.
+\item All have continuous sample path.
+\item $B_t$ and $U_t$ are not adapted to $\sigma(W_s,s\leq t)$. $Y_t$ and $X_t$ are; $Y_t$ is a submartingale for this filtration and $X_t$ is if $\mu \geq 0$ (super if otherwise).
+\end{enumerate}
+\end{exercise*}
+
+\begin{exercise*}
+For $0\leq t \leq1$, these S.P. have the same distribution as the Brownian bridge and have continuous modifications: $\hat B_t = (1-t)W_{t/(1-t)}$ for $t<1$ with $\hat B_1 = 0$, and $Z_t = tW_{1/t-1}$ for $t > 0$ with $Z_0=0$.
+\end{exercise*}
+
+\subsection*{5.2 The reflection principle and Brownian hitting times}
+
+\begin{theorem*}[Levy's martingale characterization]
+Suppose a square-integrable MG $(X_t,\mathcal F_t)$ of right-continuous filtration and continuous sample path is such that $(X_t^2 - t, \mathcal F_t)$ is also a MG. Then, $X_t$ is a Brownian motion. (note: continuity is essential, e.g. $X_t = N_t - t$ (Poisson-ish) satisfies the other properties)
+\end{theorem*}
+
+\begin{proposition*}
+Suppose $(X_t,\mathcal F_t)$ is a square-integrable martingale with $X_0=0$, right-continuous filtration and continuous sample path. If the increasing part $A_t$ in the corresponding Doob-Meyer decomposition is almost surely unbounded then $W_s = X_{\tau_s}$ is a Brownian motion, where $\tau_s = \inf\{ t\geq0 : A_t > s\}$ are $\mathcal F_t$-stopping times such that $s\mapsto \tau_s$ is a non-decreasing and right-continuous mapping of $[0,\infty)$ to $[0,\infty)$ with $A_{\tau_s} = s$ and $X_t = W_{A_t}$.
+\end{proposition*}
+
+\begin{proposition*}
+If $\tau$ is a stopping time for the canonical filtration $\mathcal G_t$ of the Brownian motion $W_t$ then the S.P. $X_t = W_{t + \tau} - W_\tau$ is also a Brownian motion, which is independent of the stopped $\sigma$-field $\mathcal G_\tau$. Note: this implies B.M. is a strong Markov process.
+\end{proposition*}
+
+% should i include more here?
+\begin{remark*}[Reflection principle]
+We use the last proposition to calculate the pdf of the \emph{first hitting time} $\tau_\alpha = \inf\{t > 0: W_t = \alpha\}$. Now, $\{\omega : W_T(\omega) \geq \alpha\} \subseteq \{\omega : \max_{0\leq s \leq T} W_s(\omega)\} = \{\omega : \tau_\alpha(\omega) \leq T\}$. Recall that $X_t = W_{t+\tau_\alpha} - W_{\tau_\alpha}$ is a B.M. independent of $\tau_\alpha$ (which is measurable on $\mathcal G_{\tau_\alpha}$). The law of $X_t$ is invariant to a sign-chang so we have the \emph{reflection principle} stating that $\Pb(\max_{0\leq s\leq T} W_s\geq\alpha,W_T\geq\alpha) = \Pb(\tau_\alpha\leq T, X_{T-\tau_\alpha} \geq0) = \Pb(\tau_\alpha \leq T, X_{T-\tau_\alpha} \leq 0) = \Pb (\max_{0\leq s \leq T} W_s \geq \alpha, W_T \leq \alpha).$ Since $\Pb(W_T=\alpha)=0$ we have $\Pb(\max_{0\leq s \leq T} W_s \geq \alpha) = \Pb(\max_{0\leq s \leq T} W_s \geq \alpha, W_T \geq \alpha) + \Pb(\max_{0\leq s \leq T} W_s \geq \alpha, W_T \leq \alpha) = 2\Pb(\max_{0\leq s \leq T} W_s \geq \alpha, W_T \geq \alpha) = 2\Pb(W_T\geq \alpha)$.
+\end{remark*}
+
+\begin{remark*}
+Using a similar argument for the simple random walk $S_n$ gets us $\Pb(\max_{0\leq k\leq n} S_k \geq r) = 2\Pb(S_n > r) + \Pb(S_n=r)$.
+\end{remark*}
+
+\begin{remark*}
+Let $\tau_{\beta,\alpha} = \inf\{t : W_t\geq \alpha\text{ or } W_t\leq\beta\}$. Applying Doob's optional stopping theorem for the uniformly integrable stopped martingale $W_{t\wedge \tau_{\beta,\alpha}}$ of continuous sample path we get $\Pb(W_{\tau_{\beta,\alpha}} = \alpha) = \beta/(\alpha+\beta)$.
+\end{remark*}
+
+\begin{exercise*}
+$\E(\tau_{\beta,\alpha})=\alpha\beta$ (apply Doob's optional stopping theorem on $W^2_{t\wedge\tau_{\beta,\alpha}}-t\wedge\tau_{\beta,\alpha}$.
+\end{exercise*}
+
+\subsection*{5.3. Smoothness and variation of the Brownian sample path}
+
+\begin{definition*}
+For any finite partition $\pi$ of $[a,b]$, i.e. $\pi=\{a=t_0^{(\pi)} < \dots < t_k^{(\pi)} = b\}$. Let $\vectornorm \pi = \max_i \{ t_{i+1}^{(\pi)} - t_i^{(\pi)}\}$ denote the length of the longest interval in $\pi$ and $V_{\pi}^{(q)} = \sum_i \abs{f(t_{i+1}^{(\pi)}) - f(t_i^{(\pi)})}^q$ denote the $q$-th variation of $f(\cdot)$ on $\pi$. The $q$-th variation of $f(\cdot)$ on $[a,b]$ is then $V^{(q)}(f) = \lim_{\vectornorm\pi\to0} V_{(\pi)}^{(q)}(f)$ provided it exists.
+\end{definition*}
+
+\begin{definition*}
+The $q$-th variation of a S.P. $X_t$ on the interval $[a,b]$ is the random variable $V^{(q)}(X)$ obtained when replacing $f(t)$ by $X_t(\omega)$ in the above definition when the limit makes sense.
+\end{definition*}
+
+\begin{definition*}
+The \emph{quadratic variation} of a stochastic process $X$, denoted $V_t^{(2)}(X)$ is the non-decreasing, non-negative S.P. corresponding to the quadratic variation of $X$ on the intervals $[0,t]$.
+\end{definition*}
+
+\begin{proposition*}
+For a Brownian motion $W(t)$, as $\vectornorm\pi\to0$ we have that $V_{(\pi)}^{(2)}(W)\to(b-a)$ in 2-mean.
+\end{proposition*}
+
+\begin{corollary*} The quadratic variation of the Brownian motion is the S.P. $V_t^{(2)}(W) = t$, which is the same as the \emph{increasing process} in the Doob-Meyer decomposition of $W_t^2$. More generally, the quadratic variation equals the increasing process for any square-integrable martinagle of continuous sample path and right-continuous filtration.
+\end{corollary*}
+
+\begin{corollary*}
+With probability one, the sample path of the Brownian motion $W(t)$ is \emph{not Lipschitz continuous} ($\abs{W(t)-W(s)}\leq L\abs{t-s}$) in any interval $[a,b]$.
+\end{corollary*}
+
+\begin{exercise*}
+Fixing $\gamma>1/2$, with probability one, the sample path of B.M. is not globally Holder continuous of exponent $\gamma$ in $[a,b]$.
+\end{exercise*}
+

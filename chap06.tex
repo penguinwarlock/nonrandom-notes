@@ -179,4 +179,48 @@ countable number of non-random values.
 
 
 \subsection*{6.2: Poisson process, Exponential inter-arrivals and order statistics}
-\subsection*{6.3: Markov jump processes, compound Poisson processes}
+
+\begin{condition*}
+$\boxed{C_0}$. Each sample path $N_t(\omega)$ is piecewise constant, nondecreasing, right continuous, with $N_0(\omega)=0$ , all jump discontinuities are of size one, and there are infinitely many of them.
+\end{condition*}
+
+Associated with each sample path $N_t(\omega)$ satisfying $\boxed{C_0}$ are the jump times $0=T_0<T_1<\dots$ with $T_k = \inf\{t \geq 0:N_t\geq k\}$ for each $k$, or equivalently $N_t = \sup\{k \geq 0 : T_k \leq t\}$. 
+
+Recall that $N$ has the $\text{Poisson}(\mu)$ law if $P(N=k)=\frac{\mu^k}{k!}e^{-\mu}$.
+
+\begin{condition*}
+$\boxed{C_1}$. For any $k$ and any $0<t_1<\dots<t_k$, the increments $N_{t_1}, N_{t_2}-N_{t_1},\dots,N_{t_k}-N_{t_{k-1}}$ are independent random variables and fro some $\lambda > 0$ and all $t>s\geq0$ the increment $N_t-N_s$ has the $\text{Poisson}(\lambda(t-s))$ law.
+\end{condition*}
+
+\begin{definition*}
+Among the processes satisfying $\boxed{C_0}$ the Poisson process is the unique one satisfying $\boxed{C_1}$.
+\end{definition*}
+
+\begin{corollary*}
+$M_t = N_t - \lambda t$ is a MG. Also, it is square-integrable and $M_t^2 - \lambda t$ is a martingale for the (right-continuous) filtration $\sigma(N_s,s\leq t)$.
+\end{corollary*}
+
+\begin{proposition*}
+The Poisson processes are the only stochastic processes with stationary independent increments. Also, the Poisson process is a homogeneous Markov process; it has stationary regular transition probabilities $p_t(x+k|x)=\frac{(\lambda t)^k}{k!} e^{-\lambda t}, k,x\geq 0$. Also the Poisson process is a strong Markov process.
+\end{proposition*}
+
+\begin{proposition*}[Memoryless property of the Exponential law]
+We say that a r.v. $T$ has $\text{Exponential}(\lambda)$ law if $\Pb(T>t)=e^{-\lambda t}$. Except for $T=0$ w.p.1 these are the only laws for which $\Pb(T>x+y|T>y)=\Pb(T>x)$ for all $x,y\geq0$.
+\end{proposition*}
+
+\begin{condition*}
+$\boxed{C_2}$. The gaps between jump times $T_k-T_{k-1}$ are i.i.d. r.v.s each of $\text{Exponential}(\lambda)$ law.
+\end{condition*}
+
+\begin{proposition*}
+A stochastic process $N_t$ that satisfies $\boxed{C_0}$ is a Poisson process of rate $\lambda$ iff it satisfies $\boxed{C_2}$.
+\end{proposition*}
+
+\begin{remark*}
+Obviously the sample path of the Poisson process are never continuous. However, $\Pb(N_{t+h} - N_t \geq 1) = 1-e^{-\lambda h} \to 0$ as $h \downarrow 0$, so $\Pb(T_k=t)=0$ so there are no fixed discontinuities (i.e. occuring at non-random times).
+\end{remark*}
+
+\begin{proposition*}
+Fixing positive $t$ and a positive integer $n$ let $U_i$ be i.i.d. random variables, each uniform on $[0,t]$ and consider their order statisticsc $U_i^*$. That is, permute the order of $U_i$ so that $U_1^*\leq\dots\leq U_n^*$. The joint distribution of $(U_1^*,\dots,U_n^*)$ is precisely that of the first $n$ arrival times $(T_1,\dots,T_n)$ of a Poisson process, conditional on the event $N_t=n$.
+\end{proposition*}
+

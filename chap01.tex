@@ -462,6 +462,10 @@ is, when $\int_\R h(\xi) d\law_{X_n} (\xi) \rightarrow \int_\R h(\xi)
 d\law_X(\xi)$, for each fixed $h: \R \rightarrow \R$ continuous and bounded.
 \end{example*} 
 
+\begin{definition*}[Uniform integrability]
+A collection of R.V.-s $\{X_\alpha,\alpha\in \mathcal I\}$ is called U.I. if $\lim_{M \to\infty} \sup_\alpha \E[\abs{X_\alpha} I_{\abs{X_\alpha} > M}] = 0.$
+\end{definition*}
+
 \begin{theorem*}[Dominated Convergence]
 If there exists a random variable $Y$ such that $\E Y < \infty$, $|X_n| \le Y$
 for all $n$ and $X_n \rightarrow_p X$, then $\E X_n \rightarrow \E X$.
